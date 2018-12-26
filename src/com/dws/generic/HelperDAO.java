@@ -37,13 +37,13 @@ public abstract class HelperDAO<T> extends Validation implements CRUD<T> {
 		this.connection = connection;
 	}
 	
-	protected void execute(String sql) {		
+	protected Boolean execute(String sql) {		
 		PreparedStatement ps;
 		try {
 			openConnection();
 			if(!this.connection.isClosed()) {
 				ps = this.connection.prepareStatement(sql);
-				ps.execute();
+				ps.execute();				
 			}			
 			else {
 				hasError("Conexão fechada!");
@@ -54,6 +54,7 @@ public abstract class HelperDAO<T> extends Validation implements CRUD<T> {
 		finally {
 			closeConnetion();
 		}		
+		return isValid;
 	}
 	
 	protected void executeUnique(String sql) {

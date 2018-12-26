@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CRUD<T> {
-	T save(T entity);
+	Boolean save(T entity);
 
-	T update(T entity);
+	Boolean update(T entity);
 
 	Optional<T> getById(int id);
 
